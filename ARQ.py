@@ -1,32 +1,50 @@
 import random
-#to jest komentarz dla kolegi @Konrad Abramowski, jak jeszcze raz zobaczę brak komentarzy w kodzie to już nie będę
-#z tobą robił płaskiej na siłowni i będę ci podkradał masło orzechowe, strzeż się podróżniku >:C
+#sam komentarzy nie robisz pajacu
 msg = []
+initialmessages = []
+disturbedmessages = []
+distortedzerotoone= 0
+distortedonetozero = 0
+distortedunchanged = 0
 msgsize = int(input("Podaj ilosc bitow do wyslania: "))
 packetsize = int(input("Podaj wielkosc pojedynczego pakietu: "))
-errorprob = int(input("Podaj prawdopodobienstwo wystapienia zaklocenia bitu wyrazone w % : "))
+errorprob = float(input("Podaj prawdopodobienstwo wystapienia zaklocenia bitu wyrazone w % : "))
 packetnumer = int(0)
+numberofmessages = int(input("Podaj ilosc wiadomosci do wyslania: "))
+for j in range(numberofmessages):
+    for i in range(msgsize):
+        rand = random.randint(0, 1)
+        msg.append(rand)
 
-for i in range(msgsize):
-    rand = random.randint(0, 1)
-    msg.append(rand)
+    initialmessages.append(msg)
+    print(f"Wiadomosc przed zakloceniem: {initialmessages[j]}")
 
-print(f"Wiadomosc przed zakloceniem: {msg}")
-disturbedmsg = list(msg)
-for i in range(msgsize):
-    rand = random.randint(0, 100)
-    if errorprob >= rand:
-        if disturbedmsg[i] == 0:
-            disturbedmsg[i] = 1
-        else:
-            disturbedmsg[i] = 0
+    disturbedmsg = list(msg)
+    for i in range(msgsize):
+        rand = random.randint(0, 100)
+        if errorprob >= rand:
+            distortion = random.randint(0,1)
+            if disturbedmsg[i] == distortion:
+                distortedunchanged += 1
+                disturbedmsg[i] = distortion
+            elif distortion == 1 and disturbedmsg[i] == 0:
+                distortedzerotoone+= 1
+                disturbedmsg[i] = distortion
+            elif distortion == 0 and disturbedmsg[i] == 1:
+                distortedonetozero+= 1
+                disturbedmsg[i] = distortion
+            else:
+                print("Cos niedobrego sie stalo")
 
-print(f"Wiadomosc po zakloceniu    : {disturbedmsg}")
+    disturbedmessages.append(disturbedmsg)
+    print(f"Wiadomosc po zakloceniu    : {disturbedmsg}")
 
-while ((packetnumer + 1) * packetsize) - 1 <= msgsize - 1:
-    packetbefore = msg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)]
-    print(f"Pakiet nr {packetnumer + 1} : {packetbefore} przed zakloceniem")
-    packetafter = disturbedmsg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)]
-    print(f"Pakiet nr {packetnumer + 1} : {packetafter} po zakloceniu")
-    packetnumer += 1
+    packetsbefore = []
+    packetsafter = []
+    while ((packetnumer + 1) * packetsize) - 1 <= msgsize - 1:
+        packetsbefore.append(msg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)])
+        print(f"Pakiet nr {packetnumer + 1} : {packetsbefore[packetnumer]} przed zakloceniem")
+        packetsafter.append(disturbedmsg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)])
+        print(f"Pakiet nr {packetnumer + 1} : {packetsafter[packetnumer]} po zakloceniu")
+        packetnumer += 1
 # abc

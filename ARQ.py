@@ -11,4 +11,4 @@ print(list)
 
 while ((packetnumer+1)*packetsize)-1 <= msgsize-1:
     print(list[packetnumer*packetsize :  ((packetnumer+1)*packetsize)])
-    packetnumer += 1
+    packetnumer += 1 #123

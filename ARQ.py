@@ -11,8 +11,7 @@ for i in range(msgsize):
     msg.append(rand)
 
 print(f"Wiadomosc przed zakloceniem: {msg}")
-disturbedmsg = msg
-
+disturbedmsg = list(msg)
 for i in range(msgsize):
     rand = random.randint(0, 100)
     if errorprob >= rand:
@@ -23,9 +22,10 @@ for i in range(msgsize):
 
 print(f"Wiadomosc po zakloceniu    : {disturbedmsg}")
 
-
 while ((packetnumer + 1) * packetsize) - 1 <= msgsize - 1:
-    packet = [disturbedmsg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)]]
-    print(f"Pakiet nr {packetnumer+1} : {packet}")
+    packetbefore = msg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)]
+    print(f"Pakiet nr {packetnumer + 1} : {packetbefore} przed zakloceniem")
+    packetafter = disturbedmsg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)]
+    print(f"Pakiet nr {packetnumer + 1} : {packetafter} po zakloceniu")
     packetnumer += 1
 

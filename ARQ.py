@@ -28,4 +28,4 @@ while ((packetnumer + 1) * packetsize) - 1 <= msgsize - 1:
     packetafter = disturbedmsg[packetnumer * packetsize:  ((packetnumer + 1) * packetsize)]
     print(f"Pakiet nr {packetnumer + 1} : {packetafter} po zakloceniu")
     packetnumer += 1
-
+# abc

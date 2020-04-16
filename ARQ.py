@@ -1,5 +1,6 @@
 import random
-
+#to jest komentarz dla kolegi @Konrad Abramowski, jak jeszcze raz zobaczę brak komentarzy w kodzie to już nie będę
+#z tobą robił płaskiej na siłowni i będę ci podkradał masło orzechowe, strzeż się podróżniku >:C
 msg = []
 msgsize = int(input("Podaj ilosc bitow do wyslania: "))
 packetsize = int(input("Podaj wielkosc pojedynczego pakietu: "))

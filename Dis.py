@@ -12,6 +12,7 @@ class Dis:
         self.errorDrawMsg = None
         self.singleDigitErrorDraw = None
 
+    '''
     def msgDataChangeBool(self):
         if self.errorProbabilityMsg / 100 < self.errorDrawMsg:
             return True
@@ -21,6 +22,7 @@ class Dis:
         if self.singleDigitErrorProb / 100 < self.singleDigitErrorDraw:
             return True
         return False
+    '''
 
     def distortPacket(self, Sender):
         for i in range(Sender.packetSize):

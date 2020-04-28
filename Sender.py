@@ -35,4 +35,10 @@ class Sender:
 
     def encodeParity(self):
         self.encoding = "Parity"
+        for i in self.data:
+            if sum(self.data) % 2 == 0:
+                self.data.append(0)
+            else:
+                self.data.append(1)
         pass
+

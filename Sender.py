@@ -40,5 +40,4 @@ class Sender:
                 self.data.append(0)
             else:
                 self.data.append(1)
-        pass
 

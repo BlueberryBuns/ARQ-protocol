@@ -68,4 +68,9 @@ class Sender:
             if sum(self.data) % 2 == 0:
                 self.data.append(0)
             else:
+<<<<<<< HEAD
                 self.data.append(1)
+=======
+                self.data.append(1)
+
+>>>>>>> master

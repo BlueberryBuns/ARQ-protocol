@@ -1,5 +1,5 @@
 import random
-
+import copy
 
 def xor(a, b):
     result = []
@@ -33,18 +33,22 @@ def div2mod(divisor, divider):
             temporary.pop(0)
             dividerLength += 1
     print(temporary)
+    temporary.pop(0)
     print("XD")
+    print(temporary)
+    return temporary
+
 
 class Sender:
     def __init__(self):
-        self.data = [1, 1, 0, 1, 1, 0, 1, 0, 0, 0]
-        self.sentData = [1, 0, 1, 1]
+        self.data = [1, 1, 0, 1, 1, 0, 1]
+        self.sentData = []
+        self.key = [1, 0, 1, 1]
         self.receivedAck = None
         self.packetSize = 8
         self.encoding = None
         self.test = xor(self.data, self.sentData)
         print(self.test)
-        div2mod(self.data,self.sentData)
 
     def makeData(self):
         for i in range(self.packetSize):
@@ -60,6 +64,16 @@ class Sender:
 
     def encodeCRC(self):
         self.encoding = "CRC"
+        tmp = copy.deepcopy(self.data)
+
+        tmp.extend([0, 0, 0])
+        print(self.data)
+        self.sentData = copy.deepcopy(self.data)
+        print("tmp DATA")
+        print(tmp)
+        self.sentData.extend(div2mod(tmp, self.key))
+        print(self.sentData)
+        print("XD1")
         pass
 
     def encodeParity(self):

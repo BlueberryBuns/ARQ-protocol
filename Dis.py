@@ -7,8 +7,8 @@ class Dis:
         self.dataReceivedByReceiver = []
         self.dataSendByReceiver = []
         self.dataReceivedBySender = []
-        self.errorProbabilityMsg = 30
-        self.singleDigitErrorProb = 30
+        self.errorProbabilityMsg = 0
+        self.singleDigitErrorProb = 0
         self.errorDrawMsg = None
         self.singleDigitErrorDraw = None
 

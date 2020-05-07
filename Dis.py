@@ -51,7 +51,5 @@ class Dis:
         self.singleDigitErrorDraw = random.random()
 
     def drukuj(self):
-        a = 0
-        for i in ["Pakiet po zmianie:  " + str(i) for i in self.dataReceivedByReceiver]:
-            print(i, a)
-            a += 1
+        print("Dane otrzymane przez receiver: ")
+        print(self.dataReceivedByReceiver)

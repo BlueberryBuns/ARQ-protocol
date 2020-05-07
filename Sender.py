@@ -1,6 +1,7 @@
 import random
 import copy
 
+
 def xor(a, b):
     result = []
     for i in range(len(b)):
@@ -14,6 +15,7 @@ def xor(a, b):
 def div2mod(divisor, divider):
     dividerLength = len(divider)
     temporary = divisor[0:dividerLength]
+    print(temporary)
     tmp3 = []
     for i in range(dividerLength):
         tmp3.append(0)
@@ -21,18 +23,37 @@ def div2mod(divisor, divider):
     while dividerLength < len(divisor):
         if temporary[0] == 1:
             tmp2 = temporary
+            print("temporary2: ")
+            print(tmp2)
+            print(divider)
             temporary = xor(tmp2, divider)
             print(temporary)
             temporary.append(divisor[dividerLength])
+            print("emp after append:")
+            print(temporary)
             temporary.pop(0)
             dividerLength += 1
         else:
             tmp2 = temporary
+            print("temporary2: ")
+            print(tmp2)
+            print(tmp3)
             temporary = xor(tmp2, tmp3)
+            print(temporary)
             temporary.append(divisor[dividerLength])
+            print("emp after append:")
+            print(temporary)
             temporary.pop(0)
             dividerLength += 1
+    print("Juz nic wiecej sie nie dzieje")
     print(temporary)
+    if temporary[0] == 1:
+        tmp2 = temporary
+        temporary = xor(tmp2, divider)
+    else:
+        tmp2 = temporary
+        temporary = xor(tmp2, tmp3)
+
     temporary.pop(0)
     print("XD")
     print(temporary)
@@ -45,7 +66,7 @@ class Sender:
         self.sentData = []
         self.key = [1, 0, 1, 1]
         self.receivedAck = None
-        self.packetSize = 8
+        self.packetSize = len(self.data) + len(self.key)-1
         self.encoding = None
         self.test = xor(self.data, self.sentData)
         print(self.test)

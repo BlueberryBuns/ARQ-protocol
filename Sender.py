@@ -62,29 +62,32 @@ def div2mod(divisor, divider):
 
 class Sender:
     def __init__(self):
-        self.data = [1, 1, 0, 1, 1, 0, 1]
+        self.data = []
         self.sentData = []
         self.key = [1, 0, 1, 1]
         self.receivedAck = None
-        self.packetSize = len(self.data) + len(self.key)-1
+        self.packetSize = None
+        self.pS = 4
         self.encoding = None
         self.test = xor(self.data, self.sentData)
         print(self.test)
 
+    def updateData(self):
+        self.packetSize = len(self.data) + len(self.key) - 1
+
     def makeData(self):
-        for i in range(self.packetSize):
-            self.sentData.append(random.randint(0, 1))
+        for i in range(self.pS):
+            self.data.append(random.randint(0, 1))
 
     def SendData(self, Dis):
         Dis.dataSendBySender = self.sentData
 
     def printData(self):
-        b = 0
         print("Wysłane dane: ")
         print(self.sentData)
 
     def encodeCRC(self):
-        self.encoding = "CRC"
+        self.encoding = "C"
         tmp = copy.deepcopy(self.data)
 
         tmp.extend([0, 0, 0])
@@ -98,10 +101,10 @@ class Sender:
         pass
 
     def encodeParity(self):
-        self.encoding = "Parity"
-        for i in self.data:
-            if sum(self.data) % 2 == 0:
-                self.data.append(0)
-            else:
-                self.data.append(1)
-                self.data.append(1)
+        self.encoding = "P"
+        self.sentData = copy.deepcopy(self.data)
+
+        if sum(self.data) % 2 == 0:
+            self.sentData.append(0)
+        else:
+            self.sentData.append(1)

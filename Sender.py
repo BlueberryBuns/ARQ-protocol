@@ -65,7 +65,7 @@ class Sender:
         self.data = []
         self.sentData = []
         self.key = [0]
-        self.receivedAck = None
+        self.receivedAck = False
         self.packetSize = None
         self.pS = 4
         self.encoding = None
@@ -89,6 +89,8 @@ class Sender:
         self.packetSize = len(self.sentData) + len(self.key) - 1
 
     def makeData(self):
+        self.data.clear()
+        self.sentData.clear()
         for i in range(self.pS):
             self.data.append(random.randint(0, 1))
         print(self.data)
@@ -122,5 +124,5 @@ class Sender:
             self.sentData.append(0)
         else:
             self.sentData.append(1)
-        print("Patrity Dane:")
+        print("Parity Dane:")
         print(self.sentData)

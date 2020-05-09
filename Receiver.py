@@ -10,32 +10,32 @@ def div2mod2(divisor, divider):
     tmp3 = []
     for i in range(dividerLength):
         tmp3.append(0)
-    print(tmp3)
+    #print(tmp3)
     while dividerLength < len(divisor):
         if temporary[0] == 1:
             tmp2 = temporary
-            print("temporary2: ")
-            print(tmp2)
-            print(divider)
+            #print("temporary2: ")
+            #print(tmp2)
+            #print(divider)
             temporary = xor(tmp2, divider)
-            print(temporary)
+            #print(temporary)
             temporary.append(divisor[dividerLength])
-            print("emp after append:")
-            print(temporary)
+            #print("emp after append:")
+            #print(temporary)
             temporary.pop(0)
             dividerLength += 1
         else:
             tmp2 = temporary
-            print("temporary2: ")
-            print(tmp2)
-            print(tmp3)
+            #print("temporary2: ")
+            #print(tmp2)
+            #print(tmp3)
             temporary = xor(tmp2, tmp3)
-            print(temporary)
+            #print(temporary)
             temporary.append(divisor[dividerLength])
-            print("emp after append:")
+            #print("emp after append:")
             temporary.pop(0)
             dividerLength += 1
-    print(temporary)
+    #print(temporary)
     if temporary[0] == 1:
         tmp2 = temporary
         temporary = xor(tmp2, divider)
@@ -43,8 +43,8 @@ def div2mod2(divisor, divider):
         tmp2 = temporary
         temporary = xor(tmp2, tmp3)
     temporary.pop(0)
-    print("XD")
-    print(temporary)
+    #print("XD")
+    #print(temporary)
     return temporary
 
 
@@ -61,7 +61,7 @@ class Receiver:
     def drukuj(self):
         a = 0
         for i in ["Pakiet po zmianie:  " + str(i) for i in self.receivedData]:
-            print(i, a)
+            #print(i, a)
             a += 1
 
     def decodeParityData(self,sender):
@@ -77,8 +77,8 @@ class Receiver:
         isCorrect = True
         xd = div2mod2(self.receivedData, self.key)
         checksum = copy.copy(xd)
-        print("aaaaaaaaaaaaaaaaa")
-        print(checksum)
+        #print("aaaaaaaaaaaaaaaaa")
+        #print(checksum)
         for i in range(len(checksum)):
             if (checksum[i]) != 0:
                 isCorrect = False

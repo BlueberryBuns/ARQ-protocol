@@ -24,23 +24,25 @@ class Dis:
         return False
     '''
 
-    def distortPacket(self, Sender):
-        for i in range(Sender.packetSize):
+    def distortPacket(self, sender):
+        for i in range(len(sender.sentData)):
             self.drawSingleDigitError()
             if self.singleDigitErrorProb / 100 < self.singleDigitErrorDraw:
                 self.dataReceivedByReceiver.append(random.randint(0, 1))
             else:
                 self.dataReceivedByReceiver.append(self.dataSendBySender[i])
-
-    def distortAck(self):
+    '''def distortAck(self):
         if self.ackDataChangeBool():  # Jaki kod ma w ogóle ACK ;-;
             pass
-    '''To też już skończone '''
-    def passToSender(self, Sender):
-        Sender.receivedAck = self.dataReceivedBySender
+    '''
 
-    def passToReceiver(self, Receiver):
-        Receiver.receivedData = self.dataReceivedByReceiver
+    '''To też już skończone '''
+
+    def passToSender(self, sender):
+        sender.receivedAck = self.dataReceivedBySender
+
+    def passToReceiver(self, receiver):
+        receiver.receivedData = self.dataReceivedByReceiver
 
     '''Losowańsko jest tutaj zagrywane'''
 

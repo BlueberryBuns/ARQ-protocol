@@ -59,10 +59,11 @@ class Receiver:
         sender.receivedAck = self.ackMessage
 
     def drukuj(self):
-        a = 0
-        for i in ["Pakiet po zmianie:  " + str(i) for i in self.receivedData]:
-            #print(i, a)
-            a += 1
+        # a = 0
+        # for i in ["Pakiet po zmianie:  " + str(i) for i in self.receivedData]:
+        #     print(i, a)
+        #     a += 1
+        print(self.receivedData)
 
     def decodeParityData(self,sender):
         parityBit = self.receivedData[len(self.receivedData) - 1]
@@ -88,3 +89,5 @@ class Receiver:
         else:
             self.ackMessage = False
         self.sendAck(sender)
+        checksum.clear()
+        xd.clear()

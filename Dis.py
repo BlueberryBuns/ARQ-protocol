@@ -25,6 +25,7 @@ class Dis:
     '''
 
     def distortPacket(self, sender):
+        self.dataReceivedByReceiver.clear()
         for i in range(len(sender.sentData)):
             self.drawSingleDigitError()
             if self.singleDigitErrorProb / 100 < self.singleDigitErrorDraw:

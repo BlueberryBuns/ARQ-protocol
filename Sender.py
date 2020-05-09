@@ -95,10 +95,10 @@ class Sender:
         #print(self.data)
 
     def SendData(self, Dis):
-        Dis.dataSendBySender = self.sentData
+        Dis.dataSendBySender = copy.deepcopy(self.sentData)
 
     def printData(self):
-        print("Wysłane dane: ")
+     #   print("Wysłane dane: ")
         print(self.sentData)
 
     def encodeCRC(self):
@@ -108,8 +108,8 @@ class Sender:
             tmp.append(0)
         #print(self.data)
         self.sentData = copy.deepcopy(self.data)
-        #print("tmp DATA")
-        #print(tmp)
+      #  print("tmp DATA")
+       # print(tmp)
         self.sentData.extend(div2mod(tmp, self.key))
         #print(self.sentData)
         #print("XD1")

@@ -64,7 +64,7 @@ class Sender:
     def __init__(self):
         self.data = []
         self.sentData = []
-        self.key = [1, 0, 1, 1]
+        self.key = [0]
         self.receivedAck = None
         self.packetSize = None
         self.pS = 4
@@ -72,12 +72,26 @@ class Sender:
         self.test = xor(self.data, self.sentData)
         print(self.test)
 
+    def iterateAndFIll(self):
+        i = 0
+
+    def keyUpdate(self, receiver):
+        self.key.clear()
+        newKey = input("Wprowadź klucz: ")
+        for i in range(len(newKey)):
+            self.key.append(int(newKey[i]))
+        receiver.key = self.key
+        print(self.key)
+        print(receiver.key)
+        print("klucz sendera i receivera")
+
     def updateData(self):
-        self.packetSize = len(self.data) + len(self.key) - 1
+        self.packetSize = len(self.sentData) + len(self.key) - 1
 
     def makeData(self):
         for i in range(self.pS):
             self.data.append(random.randint(0, 1))
+        print(self.data)
 
     def SendData(self, Dis):
         Dis.dataSendBySender = self.sentData
@@ -89,8 +103,8 @@ class Sender:
     def encodeCRC(self):
         self.encoding = "C"
         tmp = copy.deepcopy(self.data)
-
-        tmp.extend([0, 0, 0])
+        for i in range(len(self.key) - 1):
+            tmp.append(0)
         print(self.data)
         self.sentData = copy.deepcopy(self.data)
         print("tmp DATA")
@@ -108,3 +122,5 @@ class Sender:
             self.sentData.append(0)
         else:
             self.sentData.append(1)
+        print("Patrity Dane:")
+        print(self.sentData)

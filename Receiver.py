@@ -53,13 +53,10 @@ class Receiver:
         self.completeData = []
         self.receivedData = []
         self.ackMessage = False
-        self.key = [1, 0, 1, 1]
+        self.key = [0]
 
-    def decodeData(self):
-        pass
-
-    def sendAck(self, Dis):
-        Dis.dataSendByReceiver = self.ackMessage
+    def sendAck(self, sender):
+        sender.receivedAck = self.ackMessage
 
     def drukuj(self):
         a = 0
@@ -67,16 +64,27 @@ class Receiver:
             print(i, a)
             a += 1
 
-    def decodeParityData(self):
+    def decodeParityData(self,sender):
         parityBit = self.receivedData[len(self.receivedData) - 1]
         self.receivedData.pop((len(self.receivedData) - 1))
         if sum(self.receivedData) % 2 == parityBit:
             self.ackMessage = True
         else:
             self.ackMessage = False
+        self.sendAck(sender)
 
-    def decodeCRC(self):
+    def decodeCRC(self, sender):
+        isCorrect = True
         xd = div2mod2(self.receivedData, self.key)
         checksum = copy.copy(xd)
         print("aaaaaaaaaaaaaaaaa")
         print(checksum)
+        for i in range(len(checksum)):
+            if (checksum[i]) != 0:
+                isCorrect = False
+                break
+        if isCorrect:
+            self.ackMessage = True
+        else:
+            self.ackMessage = False
+        self.sendAck(sender)

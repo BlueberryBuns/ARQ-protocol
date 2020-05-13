@@ -7,8 +7,8 @@ class Dis:
         self.dataReceivedByReceiver = []
         self.dataSendByReceiver = []
         self.dataReceivedBySender = []
-        self.errorProbabilityMsg = 100
-        self.singleDigitErrorProb = 90
+        #self.errorProbabilityMsg = 100
+        self.singleDigitErrorProb = 10
         self.errorDrawMsg = None
         self.singleDigitErrorDraw = None
 
@@ -24,14 +24,32 @@ class Dis:
         return False
     '''
 
+    # def distortPacket(self, sender):
+    #     self.dataReceivedByReceiver.clear()
+    #     for i in range(len(sender.sentData)):
+    #         self.drawSingleDigitError()
+    #         if self.singleDigitErrorProb / 100 < self.singleDigitErrorDraw:
+    #             self.dataReceivedByReceiver.append(random.randint(0, 1))
+    #         else:
+    #             self.dataReceivedByReceiver.append(self.dataSendBySender[i])
+
     def distortPacket(self, sender):
         self.dataReceivedByReceiver.clear()
         for i in range(len(sender.sentData)):
             self.drawSingleDigitError()
-            if self.singleDigitErrorProb / 100 < self.singleDigitErrorDraw:
-                self.dataReceivedByReceiver.append(random.randint(0, 1))
+            if self.singleDigitErrorProb >= random.randint(1,100):
+                if self.dataReceivedByReceiver == 1:
+                    self.dataReceivedByReceiver.append(0)
+                else:
+                    self.dataReceivedByReceiver.append(1)
             else:
                 self.dataReceivedByReceiver.append(self.dataSendBySender[i])
+
+
+
+
+
+
     '''def distortAck(self):
         if self.ackDataChangeBool():  # Jaki kod ma w ogóle ACK ;-;
             pass

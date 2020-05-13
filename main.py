@@ -1,3 +1,5 @@
+import csv
+
 from Dis import Dis
 from Receiver import Receiver
 from Sender import Sender
@@ -66,8 +68,7 @@ print(counterTwo)
 print(counterThree)
 print(counterFour)
 print(counterFive)
-
-
+resultsCRC = [numberOfPackets,ackErrorBadMsgIsGutMsg,counterOne,counterTwo,counterThree,counterFour,counterFive]
 
 print()
 
@@ -127,6 +128,13 @@ print(counterTwo)
 print(counterThree)
 print(counterFour)
 print(counterFive)
+resultsPARITY = [numberOfPackets,ackErrorBadMsgIsGutMsg,counterOne,counterTwo,counterThree,counterFour,counterFive]
+results = []
+results.append(resultsCRC)
+results.append(resultsPARITY)
+with open('wynikiARQ.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(results)
 
 
 # print(f"CRC")

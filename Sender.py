@@ -76,13 +76,13 @@ class Sender:
 
     def keyUpdate(self, receiver):
         self.key.clear()
-        newKey = input("Wprowadź klucz: ")
+        newKey = [1,0,1,1]
         for i in range(len(newKey)):
             self.key.append(int(newKey[i]))
         receiver.key = self.key
-        print(self.key)
-        print(receiver.key)
-        print("klucz sendera i receivera")
+        #print(self.key)
+        #print(receiver.key)
+        #print("klucz sendera i receivera")
 
     def updateData(self):
         self.packetSize = len(self.sentData) + len(self.key) - 1

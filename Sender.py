@@ -59,6 +59,7 @@ def div2mod(divisor, divider):
     #print(temporary)
     return temporary
 
+
 class Sender:
     def __init__(self):
         self.data = []
@@ -69,6 +70,7 @@ class Sender:
         self.pS = 4
         self.encoding = None
         self.test = xor(self.data, self.sentData)
+        self.myRandom = random.Random()
         #print(self.test)
 
     def iterateAndFIll(self):
@@ -87,11 +89,12 @@ class Sender:
     def updateData(self):
         self.packetSize = len(self.sentData) + len(self.key) - 1
 
-    def makeData(self):
+    def makeData(self, randomSeed):
         self.data.clear()
         self.sentData.clear()
+        self.myRandom.seed(randomSeed)
         for i in range(self.pS):
-            self.data.append(random.randint(0, 1))
+            self.data.append(self.myRandom.randint(0, 1))
         #print(self.data)
 
     def SendData(self, Dis):

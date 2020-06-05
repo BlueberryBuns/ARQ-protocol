@@ -1,10 +1,17 @@
 import csv
-
+   
 from Dis import Dis
 from Receiver import Receiver
 from Sender import Sender
-
-for repetition in range(2):
+with open('wynikiARQCRC.csv', 'w', newline='') as fileCRC:
+    fieldnames = ['ilosc pakietow','przeklamane wiadomosci','jedno powtorzenie','dwa powtorzenia','trzy powtorzenia','cztery powtorzenia','piec i wiecej']
+    writer = csv.writer(fileCRC)
+    writer.writerow(fieldnames)
+with open('wynikiARQParity.csv', 'w', newline='') as fileParity:
+    fieldnames = ['ilosc pakietow','przeklamane wiadomosci','jedno powtorzenie','dwa powtorzenia','trzy powtorzenia','cztery powtorzenia','piec i wiecej']
+    writer = csv.writer(fileParity)
+    writer.writerow(fieldnames)
+for repetition in range(1):
     s1 = Sender()
     d1 = Dis()
     r1 = Receiver()

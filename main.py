@@ -11,7 +11,7 @@ with open('wynikiARQParity.csv', 'w', newline='') as fileParity:
     fieldnames = ['ilosc pakietow','przeklamane wiadomosci','jedno powtorzenie','dwa powtorzenia','trzy powtorzenia','cztery powtorzenia','piec i wiecej']
     writer = csv.writer(fileParity)
     writer.writerow(fieldnames)
-for repetition in range(1):
+for repetition in range(50):
     s1 = Sender()
     d1 = Dis()
     r1 = Receiver()

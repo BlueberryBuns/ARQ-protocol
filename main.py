@@ -16,6 +16,8 @@ for repetition in range(50):
     d1 = Dis()
     r1 = Receiver()
 
+    print(f"{repetition}\n")
+
     counterOne = 0
     counterTwo = 0
     counterThree = 0
@@ -25,7 +27,7 @@ for repetition in range(50):
     ackErrorBadMsgIsGutMsg = 0
     #ackErrorGutMsgIsBadMsg = 0
 
-    print(d1.singleDigitErrorProb)
+    #print(d1.singleDigitErrorProb)
 
     numberOfPackets = 100000
 
@@ -69,16 +71,16 @@ for repetition in range(50):
 
         s1.receivedAck = False
 
-    print(numberOfPackets)
-    print(ackErrorBadMsgIsGutMsg)
-    print(counterOne)
-    print(counterTwo)
-    print(counterThree)
-    print(counterFour)
-    print(counterFive)
+    #print(numberOfPackets)
+    #print(ackErrorBadMsgIsGutMsg)
+    #print(counterOne)
+    #print(counterTwo)
+    #print(counterThree)
+    #print(counterFour)
+    #print(counterFive)
     resultsCRC = [numberOfPackets,ackErrorBadMsgIsGutMsg,counterOne,counterTwo,counterThree,counterFour,counterFive]
 
-    print()
+    #print()
 
     counterOne = 0
     counterTwo = 0
@@ -129,13 +131,13 @@ for repetition in range(50):
 
         s1.receivedAck = False
 
-    print(numberOfPackets)
-    print(ackErrorBadMsgIsGutMsg)
-    print(counterOne)
-    print(counterTwo)
-    print(counterThree)
-    print(counterFour)
-    print(counterFive)
+    #print(numberOfPackets)
+    #print(ackErrorBadMsgIsGutMsg)
+    #print(counterOne)
+    #print(counterTwo)
+    #print(counterThree)
+    #print(counterFour)
+    #print(counterFive)
     resultsPARITY = [numberOfPackets,ackErrorBadMsgIsGutMsg,counterOne,counterTwo,counterThree,counterFour,counterFive]
     results = []
     results.append(resultsCRC)

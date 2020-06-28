@@ -1,9 +1,21 @@
 #import pdb; pdb.set_trace()
 import pandas as pd
 import numpy
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec as gs
 #import csv
 
-dfCRC = pd.read_csv('wynikiARQCRC.csv')
+def f_model(x,mean,amplitude,std_deviation):
+    return amplitude*numpy.exp(-((x-mean)/std_deviation)**2)
+
+n_points = 800
+n_bins = int(1 + numpy.floor(3.3*numpy.log(n_points)))
+
+for number in range(1,9):
+    pass
+number = 7
+dfCRC = pd.read_csv(f'wynikiARQ{number}CRC.csv')
 data_frame = pd.DataFrame(dfCRC)
 przeklamaneWiadmosci = dfCRC['przeklamane wiadomosci']
 jeden = dfCRC['jedno powtorzenie']
@@ -11,6 +23,13 @@ dwa = dfCRC['dwa powtorzenia']
 trzy = dfCRC['trzy powtorzenia']
 cztery = dfCRC['cztery powtorzenia']
 pieciwiecej = dfCRC['piec i wiecej']
+list_of_cont = []
+list_of_cont.append(przeklamaneWiadmosci)
+list_of_cont.append(jeden)
+list_of_cont.append(dwa)
+list_of_cont.append(trzy)
+list_of_cont.append(cztery)
+list_of_cont.append(pieciwiecej)
 
 meanList = []
 meanList.append(przeklamaneWiadmosci.mean())
@@ -28,7 +47,7 @@ st_div.append(trzy.std())
 st_div.append(cztery.std())
 st_div.append(pieciwiecej.std())
 
-print(f'Odchylenie standardowe: {st_div}')
+#print(f'Odchylenie standardowe: {st_div}')
 
 przeklamaneQ = []
 przeklamaneQ.append(przeklamaneWiadmosci.quantile(.0))
@@ -88,4 +107,31 @@ print(IQRcztery)
 print(IQRpiec)
 print(data_frame)
 
+fig = plt.figure()
+grid = gs(5,1,figure = fig)
+
+ax1 = fig.add_subplot(grid[0,0])
+ax2 = fig.add_subplot(grid[1:,0])
+#ax1.axis('off')
+ax1.axes.get_xaxis().set_visible(False)
+#ax1.axes.get_yaxis().set_visible(False)
+
+
+
+ax2.grid()
+
+ax1.boxplot(jeden, vert = False)
+x, y, z = ax2.hist(jeden, bins =  n_bins)
+bins_center = y[:-1]+numpy.diff(y)/2
+#ax1.get_shared_x_axes().join(ax1,ax2)
+print(bins_center)
+xlist = list(x)
+ylist = list(y)
+print(f"{xlist}\n\n")
+print(ylist)
+
+curve_fit(f_model, ylist, xlist)
+#print(params)
+ax1.grid()
+plt.show()
 #boxplot = dfCRC.boxplot(column=['jedno powtorzenie','dwa powtorzenia','trzy powtorzenia','cztery powtorzenia','piec i wiecej'])

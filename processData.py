@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec as gs
 #import csv
 
-def f_model(x,mean,amplitude,std_deviation):
+def f(x,mean,amplitude,std_deviation):
     return amplitude*numpy.exp(-((x-mean)/std_deviation)**2)
 
 n_points = 800
@@ -14,7 +14,7 @@ n_bins = int(1 + numpy.floor(3.3*numpy.log(n_points)))
 
 for number in range(1,9):
     pass
-number = 7
+number = 1
 dfCRC = pd.read_csv(f'wynikiARQ{number}CRC.csv')
 data_frame = pd.DataFrame(dfCRC)
 przeklamaneWiadmosci = dfCRC['przeklamane wiadomosci']
@@ -127,11 +127,13 @@ bins_center = y[:-1]+numpy.diff(y)/2
 print(bins_center)
 xlist = list(x)
 ylist = list(y)
-print(f"{xlist}\n\n")
-print(ylist)
+print(len(bins_center))
+print(f"{len(x)}\n\n")
+print(y)
+print(z)
 
-curve_fit(f_model, ylist, xlist)
-#print(params)
+params, _= curve_fit(f, bins_center, x, p0=[meanList[1], 0, st_div[1]])
+print(params)
 ax1.grid()
 plt.show()
 #boxplot = dfCRC.boxplot(column=['jedno powtorzenie','dwa powtorzenia','trzy powtorzenia','cztery powtorzenia','piec i wiecej'])

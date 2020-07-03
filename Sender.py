@@ -55,7 +55,6 @@ def div2mod(divisor, divider):
         temporary = xor(tmp2, tmp3)
 
     temporary.pop(0)
-    #print("XD")
     #print(temporary)
     return temporary
 
@@ -115,7 +114,6 @@ class Sender:
        # print(tmp)
         self.sentData.extend(div2mod(tmp, self.key))
         #print(self.sentData)
-        #print("XD1")
         pass
 
     def encodeParity(self):

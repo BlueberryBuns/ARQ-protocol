@@ -1,10 +1,10 @@
-#import pdb; pdb.set_trace()
+#import pdb; pdb.set_trace  ()
 import pandas as pd
 import numpy
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec as gs
-import csv
+
 #import csv
 
 def f(x,mean,amplitude,std_deviation):
@@ -139,9 +139,8 @@ for number in range(1,9):
         elif k.name == 'cztery powtorzenia': tmpname = f'Pomyślnie wysłane przy czwartej próbie {number} {type_of_coding}'
         elif k.name == 'piec i wiecej': tmpname = f'Pomyślnie wysłane przy piątej lub większej ilości prób {number} {type_of_coding}'
         fig.suptitle(tmpname)
-        #interval_space= n.linspace(y[0], y[-1], len(k))
+        
         ax2.plot(bins_center,f(bins_center,*params))
         ax2.set_xlabel("liczba pakietów")
         ax2.set_ylabel("liczba wystąpień")
         plt.show()
-    #boxplot = dfCRC.boxplot(column=['jedno powtorzenie','dwa powtorzenia','trzy powtorzenia','cztery powtorzenia','piec i wiecej'])

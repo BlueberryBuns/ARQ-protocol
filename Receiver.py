@@ -43,7 +43,6 @@ def div2mod2(divisor, divider):
         tmp2 = temporary
         temporary = xor(tmp2, tmp3)
     temporary.pop(0)
-    #print("XD")
     #print(temporary)
     return temporary
 
@@ -76,9 +75,8 @@ class Receiver:
 
     def decodeCRC(self, sender):
         isCorrect = True
-        xd = div2mod2(self.receivedData, self.key)
-        checksum = copy.copy(xd)
-        #print("aaaaaaaaaaaaaaaaa")
+        variable_decode = div2mod2(self.receivedData, self.key)
+        checksum = copy.copy(variable_decode)
         #print(checksum)
         for i in range(len(checksum)):
             if (checksum[i]) != 0:
@@ -90,4 +88,4 @@ class Receiver:
             self.ackMessage = False
         self.sendAck(sender)
         checksum.clear()
-        xd.clear()
+        variable_decode.clear()

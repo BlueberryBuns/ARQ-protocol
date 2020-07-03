@@ -12,18 +12,6 @@ class Dis:
         self.errorDrawMsg = None
         self.singleDigitErrorDraw = None
 
-    '''
-    def msgDataChangeBool(self):
-        if self.errorProbabilityMsg / 100 < self.errorDrawMsg:
-            return True
-        return False
-
-    def ackDataChangeBool(self):
-        if self.singleDigitErrorProb / 100 < self.singleDigitErrorDraw:
-            return True
-        return False
-    '''
-
     # def distortPacket(self, sender):
     #     self.dataReceivedByReceiver.clear()
     #     for i in range(len(sender.sentData)):
@@ -45,25 +33,11 @@ class Dis:
             else:
                 self.dataReceivedByReceiver.append(self.dataSendBySender[i])
 
-
-
-
-
-
-    '''def distortAck(self):
-        if self.ackDataChangeBool():  # Jaki kod ma w ogóle ACK ;-;
-            pass
-    '''
-
-    '''To też już skończone '''
-
     def passToSender(self, sender):
         sender.receivedAck = self.dataReceivedBySender
 
     def passToReceiver(self, receiver):
         receiver.receivedData = self.dataReceivedByReceiver
-
-    '''Losowańsko jest tutaj zagrywane'''
 
     def drawErrorMsg(self):
         self.errorDrawMsg = random.random()
